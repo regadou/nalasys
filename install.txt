@@ -1,0 +1,26 @@
+
+- To compile jar file: ant jar
+- To run in console: ./nalasys.sh
+- To run on Windows: download unix tools or try to figure out nalasys.sh script to create a nalasys.bat file
+- To run with a tcp server: ./nalasys.sh server=tcp:<port> # where <port> is the port number where you want to listen for an incoming connection
+- To run in your servlet container:
+  - configure the file web/WEB-INF/web.xml to your needs
+  - compile the war file: ant war
+  - drop nalasys.war in your servlet container deploy folder
+  - run the deploy and/or startup procedure appropriate for your servlet container
+  - alternatively, you can have a deployment descriptor point to the web folder in which Nalasys is installed
+  - or you can drop the jar into your WEB-INF/lib folder and call org.regadou.nalasys classes from your jsp
+
+- The command line shell:
+  : is assign operator
+  = is equality operator
+  + - * /  are regular math operators
+  ^ for exponent, \ for logaritm, % for ratio(modulo)
+  < for less, > for more
+  & for and, | for or, ~ for not
+  -> for to,, <- for from, @ for at
+  in, on and out have no definite symbols
+
+
+
+

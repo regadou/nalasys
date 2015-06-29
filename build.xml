@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<project name="nalasys" default="all" basedir=".">
+
+     <path id="lib">
+        <fileset id="lib.compile" dir="lib">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset id="lib.runtime" dir="web/WEB-INF/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+     </path>
+
+     <target name="clean">
+         <delete dir="build"/>
+         <delete file="nalasys.jar"/>
+         <delete file="web/WEB-INF/lib/nalasys.jar"/>
+     </target>
+
+     <target name="compile">
+         <mkdir dir="build"/>
+         <javac srcdir="src" destdir="build" debug="true" source="1.6" target="1.6">
+             <classpath>
+                <path refid="lib"/>
+             </classpath>
+         </javac>
+     </target>
+
+     <target name="jar" depends="compile">
+         <delete file="nalasys.jar"/>
+         <mkdir dir="build/META-INF"/>
+         <copy todir="build/META-INF">
+           <fileset dir="META-INF"/>
+         </copy>
+         <jar basedir="build" destfile="nalasys.jar" manifest="META-INF/MANIFEST.MF"/>
+     </target>
+
+     <target name="apps" depends="jar">
+         <copy file="nalasys.jar" todir="web/WEB-INF/lib"/>
+         <touch file="web/WEB-INF/web.xml"/>
+         <copy file="nalasys.jar" todir="../nalasys-apps/agenda/WEB-INF/lib"/>
+         <touch file="../nalasys-apps/agenda/WEB-INF/web.xml"/>
+         <copy file="nalasys.jar" todir="../nalasys-apps/dms/WEB-INF/lib"/>
+         <touch file="../nalasys-apps/dms/WEB-INF/web.xml"/>
+         <copy file="nalasys.jar" todir="../nalasys-apps/ets/WEB-INF/lib"/>
+         <touch file="../nalasys-apps/ets/WEB-INF/web.xml"/>
+         <copy file="nalasys.jar" todir="../nalasys-apps/regui/WEB-INF/lib"/>
+         <touch file="../nalasys-apps/regui/WEB-INF/web.xml"/>
+         <copy file="nalasys.jar" todir="../nalasys-apps/reporting/WEB-INF/lib"/>
+         <touch file="../nalasys-apps/reporting/WEB-INF/web.xml"/>
+         <copy file="nalasys.jar" todir="../nalasys-apps/test/WEB-INF/lib"/>
+         <touch file="../nalasys-apps/test/WEB-INF/web.xml"/>
+         <copy file="nalasys.jar" todir="/var/www/WEB-INF/lib"/>
+         <touch file="/var/www/WEB-INF/web.xml"/>
+     </target>
+
+     <target name="war" depends="jar">
+         <jar jarfile="nalasys.war">
+             <zipfileset dir="web" prefix="" followsymlinks="false">
+                <include name="**/*"/>
+             </zipfileset>
+         </jar>
+     </target>
+
+     <target name="run" depends="jar">
+         <exec executable="nalasys.sh" os="Linux"/>
+         <exec executable="nalasys.bat" os="Windows"/>
+     </target>
+
+     <target name="all" depends="clean,apps"/>
+
+</project>
+

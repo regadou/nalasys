@@ -1,0 +1,25 @@
+
+- Théorie de la conscience à implémenter dans Nalasys
+  - matrice principale CETS * 0QDPRIVA
+  - lier les types naegtm avec QDPRIV
+  - intégrer les datatypes et les mimetypes en un seul système cohérent
+            (dir:bin,txt,lang,data + net:ima,au,vid,3d)
+  - les protocoles réseaux (http,mailto,ftp,file,ssh,sip,...) seront mis au même niveau que les languages (js,groovy,java,cs,...,fr,en,es,...)
+  - utiliser les unités de mesure SI en lien avec la conscience CETS
+  - définir les interpréteurs de langage en fonction des caractères Unicode
+  - développer les 4 applications web: this, wow, world et jam
+  - identifier les opérateurs classiques (JS + SQL) selon les transformations (CETS*0QDPRIVA) qu'ils opèrent
+  - identifier les propriétés réelles essentielles d'un objet (name,shape,mass,color,pos,dir,size,sound,action)
+  - identifier les différents types de relation par rapport aux verbes
+      1 -> 1 
+      1 -> N   DO, HAVE, USE
+      N -> 1   BE, IN
+      N -> N
+  - hiérarchisation des concepts
+    - context / database  / table    / row      / column    / value
+                directory / filetype / file     / part      / byte
+                package   / class    / instance / field     / value
+                document  / nodetype / node     / attribute / value
+                domain    / type     / entity   / property  / value
+                
+                

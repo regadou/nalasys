@@ -1,0 +1,1001 @@
+
+                             Définition du language de programmation ETS
+     
+     
+- L'interpréteur lit des chaînes de caractères unicode qui orientent ses actions ultérieures
+- Un caractère non-défini est considéré comme un caractère vide (blank)
+- Un caractère peut aussi être explicitement défini comme un caractère vide (c <= 32 && c != 13 && c != 10 && c != 12)
+- Un caractère est non-vide lorsqu'il est inclu dans au moins une séquence d'un type de mot
+- Les types de mots prédéfinis dans ETS sont:
+  - variable (lettres non-accentuées, chiffres, souligné et dollar)
+  - mot du dictionnaire (lettres avec/sans accent, tiret et apostrophe)
+  - nombre (entier, décimal, exponentiel, probabilité)
+  - date ISO ou légale
+  - uri et url
+  - groupement (liste entre parenthèses, texte entre guillemets)
+  - opérateur (symbole mathématique ou logique)
+  - ponctuation (symbole syntaxique)
+- Chaque language naturel (fr, en, es, ...) peut définir les caractères acceptables pour chacun des types de mots
+- Chaque language informatique a déjà défini quels sont les caractères acceptables pour le language
+- Chaque mot décodé doit ensuite être transformé en code CETS*0QDPRIVA
+- Le code CETS*0QDPRIVA devient alors la référence en terme de sémantique informatique
+
+- Diagramme des classes dans org.regadou.nalasys
+  - Context
+    - self(username,source,target) = Action Entity Group
+    - language(locale,charset,mimetype) = Expression # Map.Entry == Word
+    - connection(reader,writer,error) = Stream # Map.Entry == Word
+    - data(scopes,folder,database,network) = Dictio # Map == Entity
+    - properties = String -> Matrix = Number = Property @ Group
+
+- Schema maître du diagramme réseau conceptuel:
+  - client <-> network <-> server
+  - client -> request(HTTP) -> http_server -> query(SQL) -> db_server -> result(JSON) -> filter(JSON)
+
+- Matrice des concepts
+|*- 000 001 010 011 100 101 110 111
+000 000                         007
+001     011
+010         022
+011             033
+100                 044
+101                     055
+110                         066
+111 070                         077
+
+
+- The g#(n*e==5)
+
+
+- Les codes de base
+  - C = concept
+  - E = énergie
+  - T = temps
+  - S = espace 
+  - 0 = néant/vide/rien => java.lang.Void
+  - Q = quantité => java.lang.Number
+  - D = direction => java.lang.reflect.Method
+  - P = position => java.util.Map
+  - R = relation => java.util.Collection
+  - I = identité => java.lang.String
+  - V = visuel => org.regadou.Data
+  - A = absolu/infini/tout => java.lang.Number.POSITIVE_INFINITY
+
+- Codes des niveaux de conscience
+  - les niveaux de conscience vont de 0 à 7 (0=0 Q=1 D=2 P=3 R=4 I=5 V=6 A=7)
+  - le caractère de code pour le niveau de conscience est C (pour conscience)
+
+- Tableau de base des concepts universels (the 64s)
+   A C E T S ^  A  \   concept: 0 -> (CETS) -> A
+   V p m s i *  %  /   display: (gi+s)->m#ge#(DE->PTS3)
+   I t w x u => := #   language(I#(n>0)): a#"parse"(t)=>v a#"stringify"(v)=>t
+   R g       &  |  ~   collection(R#(n>0)): g#[n*(e#"type")]
+   P e       |> |= |<  structure(P#1-P#0>0): (P@D#0 - P#0)#"id"#"names"#"properties"#"actions"#"views"
+   D a       -> @  <-  behavior(D>0): (D > 0) @ v -> p#"goal"#(CETS)
+   Q n       >  =  <   something(Q>0): (Q > 0) @ v = e
+   0 v     b +  0  -   empty: 0 @ v
+
+- Syntaxe conceptuelle:
+  - t => ""''``
+  - g => (){}[]
+  - e @ g:dictio
+  - a => , ; . ! ?
+  - n => 0 1 2 3 4 5 6 7 8 9 0 + - . e E
+
+  
+- ETS is a uri language
+  - all uris are separated by blank chars
+  - lines can have an overload operator effect if preceding parsing is complete
+  - an uri is guesses from having or not the : character in the blank separated word
+    :space or space: will invoke assign operator
+    := will invoke assign operator
+    letters:/ will invoke network streaming url
+    letters:letters will invoke special uri handling
+    number/ or /number will invoke division operator
+    no : will invoke number.parsing, string.dictio.lookup,date.parsing
+
+- La dégradation du tableau des 64s se fait comme suit:
+  - 64 concepts = 8x8
+  - 24 opérateurs = 8x3
+  - 24 classes = 6x4
+  - 16 limites = 4x4
+  -  8 niveaux = AVIRPDQ0
+  -  4 dimensions = CETS
+  -  4 vides = v 0E 0T b
+
+- phases de l'humanité actuelle:
+  -   -6: naissance de Jésus
+  -  476: chute de l'empire Romain
+  -  800: couronnement de Charlemagne
+  - 1099: croisades europeennes en Palestine
+  - 1250: peste europeenne
+  - 1492: Christophe Colomb en Amérique -> colonisation + genocides
+  - 1750: la machine à vapeur en Angleterre -> démocratie + capitalisme
+  - 1947: Roswell, USA -> télécommunications + voyage spatial
+  - 2250: prochaine frontière -> prochain paradigme
+
+- propriétés(mesures) de la chose
+   - name(lang): identité entitaire         = It
+   - type: relation entitaire               = Rg
+   - substance: position énergétique        = PE3
+   - moment: position temporelle            = PT
+   - début: première position temporelle    = PT#0
+   - fin: dernière position temporelle      = PT#100%
+   - lieu: position spatiale                = PS3
+   - mouvement: groupe d'actions            = DE->ST = ga
+   - couleur: direction énergétique         = DE3n
+   - image: niveaux énergétiques par espace = DE3/S2
+   - vitesse: direction spatio-temporelle   = DS3/T
+   - charge: quantité énergétique           = QE/T
+   - lumière: quantité d'énergie            = QE/S2
+   - solidité: gazeux -> liquide -> solide  = QE/S3 de résistance à la pression
+   - viscosité: quantité d'énergie          = QE/S3 d'adérence
+   - température: quantité énergétique      = QET/S
+   - masse: quantité énergétique            = QET2/S2
+   - durée: quantité temporelle             = QT
+   - hauteur: quantité spatiale             = QS
+   - volume: quantité spatiale              = QS3
+
+- Pouvoir définir un objet physique
+  - masse: Q(C=1,E=1,T=2,S=-2)
+  - position spatiale: P(C=3,S=3)
+  - moment temporel: P(C=3,T=1)
+  - durée temporelle: Q(C=1,T=1) = [P(C=3,T=1,I=1) - P(C=3,T=1,I=0)]
+  - dimensions spatiales: Q(C=1,S=3)
+  - substance: P(C=3,E=3)
+  - couleur: D(C=2,E=3)
+
+- Pouvoir définir une donnée
+  - type de donnée: nombre(n,Q,C=1), fonction(a,D,C=2), entité(e,P,C=3), groupe(g,R,C=4), texte(t,I,C=5), matrice(m,V,C=6)
+  - type de média: document, image, audio, animation, volume
+  - type d'identifiant: nom, numéro, code, mot, url, expression
+  - type de mesure: ETS*QDPRIV
+
+- Pouvoir définir une personne
+  - nom
+  - parents
+  - sexe: D(C=2,E=1)
+  - âge: Q(C=1,T=1)
+  - date de naissance: P(C=3,T=1)
+  - lieu de naissance: P(C=3,S=3)
+  - langue
+  - revenu: Q(C=1,E=1,T=-1)
+  - scolarité
+  - ethnie biologique
+  - identité sociale (familliale, professionnelle, religieuse, nationale, politique)
+  
+- Capacité d'expression du langage
+  - ressembler aux langages naturels (francais, anglais, ...)
+  - pouvoir exprimer et manipuler des expressions URI, Mimetype, SQL, HTML et JSON
+  - pouvoir afficher et modifier tous les types MIME (texte, image, audio, vidéo, modèles 3D, document, feuille de calcul, animation, vectoriel)
+  - affichage des données temporelles selon divers formats (linéaire, tableau hebdo, tableau mensuel, périodes variables, cycles, ...)
+
+- Définition des données dans le contexte informatique courant
+  - format des définitions
+    - schema SQL
+         create table entity ( ... );
+    - classe Java (ou autre langage server-side)
+         public class Entity { ... }
+    - formulaire HTML
+         <form method="POST" action="host/datastore/update/entity">
+            <input type="hidden" name="idfield" value="idvalue">
+            <input ... >
+         </form>
+    - structure JSON
+      - supporte les résultats de requêtes SQL
+      - peut émuler en structure une requête SQL
+      - permet de sérialiser une structure avec récurrence des langages procéduraux (java, c/c++, c#, php, javascript, vb, ...)
+      - permet de représenter une balise HTML/XML avec les propriétés type, attributes et children
+      - peut émuler des instructions
+    - référence URI (host/datastore/[action/]entity?[idfield=idvalue][&][fieldname=fieldvalue[&...]])
+      - les actions sont soit en CRUD dans le URI(create,read,update,delete) ou en methodes HTTP dans le header(GET,POST,PUT,DELETE)
+      - les actions peuvent exiger un id field/value suf read qui peut n'être basé que sur des critères avec certains champs
+      - par sécurité le controleur peut ajouter le owner dans la requête réèlle et empêcher de modifier cette valeur au create et update
+    - typologie Mimetype
+  - On doit faire de tous ces formats un seul objet indissociable
+  - Chaque format est une vue de l'objet dans un contexte spécifique(modèle[SQL],vue[HTML],controleur[Java],échange de données[JSON],adresse[URI])
+  - On ne devrait pas avoir à coder le lien entre chaque vue de l'objet, seulement relier chaque vue à l'URI de l'objet
+
+- Historique des standards
+  - C (1978) => Controller
+  - MS-DOS (1981) => Controller
+  - DBASE (1981) => Model(DBF) and Controller(PGM) and View(SCR)
+  - SQL (1986) => Model
+  - MIMETYPE (1988) => View
+  - HTML (1991) => View
+  - HTTP (1991) => Controller
+  - JPG (1992) => View
+  - URI (1994) => View to Model
+  - PHP (1995) => Controller
+  - JAVA (1996) => Controller
+  - ASP (1996) => Controller
+  - CSS (1996) => View
+  - JS (1997) => View or Controller
+  - MP3 (1998) -> View
+  - XML (1998) => View or Model
+  - XSLT 1999) => Controller
+  - CS (2000) => Controller
+  - JSON (2001) => View to Controller or Model to Controller to View
+  
+- Tableau des types de conscience
+
+         C           E            T             S           E/T     E/S     S/T      ET/S    ETT/SS
+  A  tout        infini        éternité      univers
+  V  matrice     mouvement     son           image 
+  I  texte       mot           uri           expression
+  R  groupe      type          période       région
+  P  entité      substance     moment        lieu
+  D  action      opération     séquence      orientation
+  Q  nombre      travail       durée         distance    puissance force  vitesse  momentum  masse
+  0  rien        quelconque    instantané    vide
+  
+  
+the ideal shell language to support ETS concepts would do the following:
+- types of expressions
+  - execute java expressions (object mode)
+  - execute sql commands (sql mode)
+  - construct html with template variables that sends output to a current browser window (html mode)
+  - build objects with json syntax (object mode)
+  - assign values with json, html, java or sql syntax (assign mode)
+  - comments are dependent on the mode
+    - object mode has // \n and /* */
+    - sql mode has -- \n
+    - html mode has <!-- -->
+  - object mode can embed html and sql with escaped string "..."
+  - html and sql modes can embed object expressions with escaped expressions ${...}
+  - maybe could we allow to change escape characters in html and sql modes
+  - a script (interactive or saved in a file) must be first compiled but can be interpreted right away or saved as a class file
+ 
+- how to decide which expression type it is
+  - if line starts wih < it is html
+  - if second word is = go in assign mode (json, java, sql)
+  - if third word in assign mode or first word in exec mode is sql command(select,update,insert,delete,create,drop,grant) then go into sql mode
+  - else we are in object mode(mix of java and json syntax)
+  - end of expression is ; (in json/java/sql modes) or consecutive returns
+  - a ; does not send input to execution, only consecutive returns do
+ 
+- token parsing in object mode
+  - understand numbers (integer, real, probability, complex)
+  - understand true, false and null
+  - understand strings as "..." double quote escape
+  - understand chars as '.' single quote escape
+  - understand C style escapes \\ in within escaped chars and strings (not in urls, variables, dates, times)
+  - understand variables, java classes, java packages and java operators
+  - understand call of functions(instance method, static method, class constructor, user function)
+  - understand json object{} and array[]
+  - understand date, time and url without string escapes
+  - sql: urls can identify databases, tables, rows and columns
+  - html: urls can identify nodes by their id and then attributes(dot notation) or children(bracket array notation)
+  - we need to add a Function class in the jvm to wrap all callable types
+    - method of an object (static or instance)
+    - constructor of a class
+    - user function that groups several expressions in any mode (object,sql,html)
+  - variable scope is restricted to the same context where it is defined (not visible in lower or higher context)
+  - only reserved words have global scope:
+    - import, function, return
+    - if, else, do, while, for, switch, case, break, continue, try, catch
+    - void, byte, short, char, int, long, float, double, boolean, class
+    - null, true, false
+    - all valid java operators
+    
+- tokens needed for a universal language
+  - literals: numbers, strings, arrays, objects, booleans and null => JSON
+  - names: constants, variables and keywords
+  - operators: assign, paths, comparators, math => JsonPath + (JS|SQL)operators
+  - callables: functions, methods and flow control
+    - flow control needs only 3 ops to work: label, if, goto
+  - store (SQL,disk,model):
+    - command: select(show), insert(create,grant), update(alter), delete(drop,revoke)
+    - fields: *, field name, expression, function, subquery
+    - tables: from, join, union, except
+    - clauses: and, or, not, is(=), <, >, <>, in, between
+    - grouping
+    - ordering
+    - limit
+  - display (HTML,screen,view): 
+    - windows: document, body, frameset, frame, iframe
+    - blocks: div, span, p, pre, a, area, ol, ul, li, table, tr, th, td
+    - text: br, b, u, font
+    - objects: img, svg, canvas, audio, video, object, embed, applet, script
+    - forms: form, input, button, textarea, select
+  - process (JS,cpu,controller):
+    - no standard yet
+    - contenders by platform:
+      - java on jvm
+      - csharp on dotnet
+      - php on zend engine
+      - cfml on cold fusion
+      - ruby on ror
+      - python on django
+      - perl
+      - javascript on nodejs/v8
+    - but javascript could run on must of these platforms:
+      - v8 natively
+      - jvm with rhino
+      - dotnet with jscript
+      - zend with v8js
+      - cold fusion with actionscript
+      - not yet for ruby, python and perl
+    - since json is overcoming xml as data exchange format
+    - since commonjs is working on a common api for all javascript environments
+    - we can bet on either json, cjs or js becoming a standard in all process controllers soon
+    - we could well advance the developement being seend on the web with json:
+      - at first we got json (which we will call jsondata)
+      - then we got jsonpath
+      - all is missing is jsonops (operators including assign, functions and flow control)
+      - then we could see emerging a standard controller language as a business rules modeler
+        - json(data) + jsonpath + jsonops
+        - augment data types with functions, datetimes and urls (including sql: and html:)
+        - have a product that only need the 3 json to work with SQL and HTML
+        - implement this product in java-servlet, dotnet, apache-php and nodejs
+
+- faire une application de visualisation du système solaire
+- développer un langage pseudo-naturel pour décrire et placer les objets, les caméras et les lumières
+- faire un algorythme générique pour les shaders
+  - matrice de la forme
+  - matrice de déplacement de l'objet
+  - matrice de déplacement de la caméra courante
+  - matrice de déplacement des lumières
+  - couleurs/textures de la forme
+- construction de la forme en javascript
+  - principe d'une seule texture wrappée autour de l'objet
+  - ou une seule couleur pour tout l'objet
+  - ou un mapping de couleur qui est transformé en texture
+  - utiliser des formes génériques (sphère, cube, tube, ...)
+  - ou des surfaces calculées (nurbs)
+  - ou des points fixes créés à l'externe (formes 3D downloadées sur internet)
+  - transformer tous les formats externes (obj, x3d, 3ds, collada, ...) en format interne json
+- définir le format interne json
+  - propriétés: name, shape, mass, color, pos, dir, size, move, rot, exp
+  - shape peut être juste le nom ou une liste de points
+ 
+- les formats qui ont fait une différence: html jpg(->png) sql mp3 swf(->mp4) json(<-xml)
+
+- we will build a new framework based on ETS principles
+- we will call it USP (Universal Server Pages)
+- internal disk file format is JSON
+- it is the config for the multiplatform WAW system
+- it will contain the following apps:
+  - schooltime (agenda with school days system)
+  - dataman (database manager)
+  - fileman (file nmanager
+  - webman (web CMS)
+  - viewman (3D viewer)
+  - nalasys|langman (programming in multiple pseudo-natural languages)
+- a string can have wrappers ${...} which can contain variables and operations
+- a variable is either predefined by the system or user assigned by some operation
+- an operation can be:
+  - all standard programming operators from C/java/javascript/sql: assignment(=,:), math(+-*/^\), compare(<,<=,==,>,>=), logic(&&,||,!)
+  - jsonpath: starting with $ or a current valid variable
+  - verbs defined in the current dictionary
+- the system must predefine variables ETS, 0QDPRIVA and naegt(uxw)m(isvd)
+
+
+- TODO for viewman
+  - implement collision detection (only use bounding boxes to see if planes intersect)
+  - implement gravity (attraction between celestial bodies and attraction of objects to the ground plane)
+  - implement lighting with shaders only
+  - move all matrix computation in shaders (maybe get rid of the javascript Matrix class)
+  - change pos and rot properties in astro planet because it conflicts with pos in Entity class
+  - can astro have a button to load a new window or iframe with view 3d content
+
+
+file = uri # protocol = "file"
+sql = uri # protocol = "sql"
+ets = uri # protocol = "ets"
+http = uri # protocol = "http"
+html = uri # protocol = "html"
+tcp = uri # protocol = "tcp"
+mailto = uri # protocol = "mailto"
+
+
+words(ETS): [= g#(n*word)]
+           ETS
+     The Master Teach [->ETS]
+view(ETS)
+entity is energy.position in space.position at time.position = ETS
+action is entities from state(ETS#0) to state(ETS#1)
+procedure is actions(ETS)
+event is actions between several entities at time
+relation is events(ETS) between entities
+verbs(actions&relations):be|is,of|at|in,from->to|between,do|does,have|has,move|moves|mov
+define eow, eol, eof, eoc, eon, eop -> end of word, end of line, end of file, end of connection, end of network, end of power
+
+
+:= == (:|=)
+protocols=http|email|voice|view|touch|postal
+
+all(absolute,infinity,true)
+view(image,model,video,audio,document|table|tree|path|cube) = m(ETS) => V |> S @ T
+identity(text,expression,uri) = t(ETS) => I |> S @ T
+relation(group,space,time) = g(ETS) => R |> S @ T
+position(entity,space,time) = e(ETS) => P |> S @ T
+direction(action,procedure,function) = a(ETS) => D |> S @ T
+quantity(number,vector,matrix) = n(ETS) => Q(1D->3D) |> S @ T
+none(void,zero,false)
+
+
+0      E         T         S     n = 1|>(A#[0->(1/0)])
++    do =>     to ->    out |<   & + *  ^
+=    be :=     at @     on |=    | 0 % (1/0)
+-    have #    of <-    in |>    ; ! /  \
+       Q         D         P     R I V  A      
+                                
+
+- le language ETS possède 2 modes d'échapement
+- en mode échappé, les codes ETS sont échappés par un uri ets:... et le reste des mots vient du dictionnaire courant
+- en mode non-échappé, tous les mots alphabétiques sont décomposés en valeurs ETS sauf les mots précédés de $ qui viennent du dictionnaire
+- le mode non-échappé comporte des actions définies par un ou deux symboles consécutifs
+- le monde non-échappé serait le vrai langage ETS utilisé dans les uris ets:...
+- le mode non-échappé sépare les mots selon le type de caractère et n'a pas besoin de caractères blancs
+- le mode échappé sépare les mots avec les caractères blancs et les opérateurs-ponctuation
+- opérateurs du mode non-échapé(symboles composables): :+-*/%^\&|!<=>@#,;()[]{}
+- opérateurs de mode échappé(symboles non-composables): ,;.!?()[]{}
+
+- le mode échappé serait d'autres langages naturels comme le français, l'anglais, ...
+- le système doit booter avec une table SQL|JSON avec les langues en propriété(colonnes) et les concepts en entités(lignes)
+- JSON does: [] as table content set, {} as entity of table set, anything else as value of property of entity
+- Javascript does (on top of JSON grouping): () as function parameters or expression grouping
+
+- ! est une négation en non-échappé et une fin de phrase en échappé
+- = est une assignation en non-échappé et une comparaison en échappé
+- : est une définition en non-échappé et un protocole uri en échappé
+- _ est un espace en non-échappé et un caractère de mot en échappé
+- ; est une fin de phrase en non-échappé et une opération de groupement en mode échappé
+- . est une opération de propriété en non-échappé et une fin de phrase en échappé
+- $ est l'échappement pour les mots du dictionnaire en mode échappé et un caractère de mot en échappé
+- le : force l'assignation tandis que le = assigne uniquement à un non-assigné en non-échappé
+- le mode non-échappé supporte les string|bytearray de nombres en t:0x...(hexadecimal:2letters/byte) ou t:0u...(unicode:4;letters/char)
+
+MVC=SQL->JS->HTML
+ETS=JSON(SQL->HTML)
+
+- realtime world interactions:
+  - standalone events with localhost copies of an instant world
+  - network with shared events peer to peer
+  - robotic with real world events
+
+
+I am Régis Dehoux from Boston 1963.  /* mode échappé */
+
+$me:(I="Dehoux,Régis",S="Boston",T=1963);  /* mode non-échappé */
+
+
+The ETS language extends with tools for a web application framework:
+- viewtool: 3D and text view of a virtual world => JS3D
+- langtool: system languages definition => ETS
+- webtool: visual designer for web sites => HTML
+- datatool: database management => SQL
+- timetool: agenda for school teachers(schooltime) and busy people(busytime) => DATE
+- filetool: local filesystem management => FILE
+
+The ETS language will be implemented in the following platforms:
+- HTML client version for Firefox, Chrome, Safari, Explorer, Opera and the like ...
+- http server version for asp, jsp, php, node, python, ruby and the like ...
+- local server version for sh, bat and the like ...
+- local make for Linux, Mac, Windows and the like ...
+
+
+- the ETS parser will only do lookup for single-char ETS words and current session words
+- the ETS compiler will link any undefined words  with current dictio words
+- if are left any undefined word, it must be the only word on only one side of an assignment operation
+- if there is more then one undefined word or the single undefined is not solo-operand of an assignment
+  - signal an error ?
+  - fail silently ?
+  - try to auto-define undefined word with other words around (and warn of undefined auto-assigned) ?
+  
+- how to implement flow control in ETS:
+  - conditional if else with the ternary operation ? :
+  - loop with the operator ?*
+    - syntax: loop-condition ?* loop-state => loop-expression
+    - type of loop-condition:
+      - null: do not loop
+      - boolean: loop while loop-condition is true (loop-state contains how many loops done yet) [loop-condition expression re-evaluated at each loop]
+      - number: loop loop-condition number of times (loop-state contains how many loops done yet) [loop-condition expression re-evaluated at each loop]
+      - string: loop while loop-condition is not empty (loop-state contains how many loops done yet) [loop-condition expression re-evaluated at each loop]
+      - function: loop will work with the return value of the function call (loop-state contains how many loops done yet) [loop-condition expression re-evaluated at each loop]
+      - array: loop on each element of the array (loop-state is current array index) [works like javascript for in]
+      - object: loop on each property of the object (loop-state is current object property) [works like javascript for in]
+
+
+- ETS assumes that property = perception and quests for unit measures on each property of all entities in the system
+- The Master Data
+0 (blank) _'`
+1 (unaccent) a-z A-Z _'`
+A [({"'` ])}
+V3 \ (1/0) ^
+V2 / % *
+V - 0 +
+I # :(=) =>
+R ~(!) | &
+P |< |= |>
+D <- @ ->
+Q < =(==) >
+
+
+- we will refer to any concept by a sequence of numbers
+- each number is an id for the current level
+- so a program goes thru these numbers which guides it thru the data network
+- when a path is invalid (index value non existant), just drop this path
+- return queried properties
+- the concepts to enter first are: 47 = (2 + 3 + 6 + 12 + 24)
+  - the limits: 0 A
+  - the dimensions: E T S
+  - the levels: Q D P R I V
+  - the types: n a e g t p x w b i s v
+  - the operators: <=> <-@-> |>|=|< ~|& #:=> -0+ /%* \A^
+- each concept has a name for each language(js,sql,fr,en) + a javascript value for the ets field + a concept id unique in the system
+- each instance can be named after 2 numbers, the instance's concept's id + the instance's id unique for all the concept instances
+- ETS will be booted with a js file that contain the dictio of the 47 bsic concepts
+- the system administrator can then set folders and databases (defaults fs:web server document root, db:none)
+- ETS can query these resources for more information
+
+- standard naming for ETS names
+  - all upper case words reserved for naming ALL and languages
+  - all camel case words are for programming classes, properties and methods (js,json,java,...)
+  - all lower case words (with semiseps -_'`) are for concepts with ETS values
+  - all proper case words (first upper other lower) are for naming specific entities (name of a single entity)
+  
+- ETS theory has one single main view: 0QDPRIVA*1ETSA-+= => 64 base concepts
+- Then is introduced languages based on MVC=EST usage:
+          ETS
+       /   |  \
+     SQL-JSON-HTML
+       \   |  /
+          JS
+- Finally is added body and spirit relationship to ETS:
+    SPI=E->A
+    COG=E->T * S^2
+    EMO=E->S * S
+    PHY=E->ST * S/T
+    NOT=E->0
+    
+- Properties for each language:
+  - id: the unique international code for this language
+  - module: file name from which this language was loaded
+  - syntax: character behavior in a text of this language
+  - dictio: list of known words in this language
+  - parse: convert a text for this language to an object
+  - stringify: convert an object to text of this language
+  - toString: how to print the language object in text targets
+ 
+- Standards to advocate:
+  - MVC = SQL + HTML + JS[ON] = DE
+  - server = ASP | JSP | PHP | other = DE
+  - mimetype extensions = PE
+  - language codes = PE
+  - country codes = PE
+  - units international system (SI) = QETS
+  - universal time (UT) = PT
+  - global positioning system (GPS) = (PS3+DS3)@PT
+  - galactic coordinates = PS3
+
+Here is the ETS Master Bootstrap:
+DISK+SCREEN+NETWORK => java.io+java.awt+java.net + java.lang,java.util,java.lang.reflect,java.sql
+MVC=SQL+HTML+JSON|XML|JS|PHP|JSP|ASP|RB|PY|PL|CGI|...
+E:VIRPDQ
+T:ETS
+S:A0
+Q:+=-
+D:^A\ *%/ =>:# &|~ |>|=|< ->@<- >=< +0-
+R:ptgean
+SPI=E*E COG=E*T EMO=E*S PHY=E*S/T NOT=0
+
+Quelque part, il faut réserver tous les mots de combinaison dans le langage ETS:
+ A E T S ET ES ST ETS EST * / + - ()
+   PE PT PS
+   DE DT DS
+   QE QT QS
+
+v|0
+e=v
+p=v
+e#p=v
+p a p == e#p a e#p
+e a e == e#1 <- e#0
+e a p == p <- e
+
+ETS byte coords is 4 bytes(L:Q|D|P|R|I|V|A|0,E^n,T^n,S^n) => int 0xSSTTEELL = id ETS
+
+L = 0->7 = 1b
+E = -3->3 = 1b
+T = -2->2 = 1b
+S = -5->5= 2b
+
+Types of tokens:
+- digits -> numbers
+- symbols -> actions
+- alphabetics -> names of entities
+- syntax -> ,;.!?
+
+Types of data:
+- scalar: text number boolean
+- vector: array object function
+
+Any user must start in the system with an avatar:
+- the user must give mass, height, width and size of bounding box before action
+- the user can give shape appearance or be given a default one with gender info
+- the user can give move rotation and expand variation to its avatar
+
+         The Love Congress = Le congrès d'amour
+         
+- I invite you all
+- to the love congress
+- where everybody
+- testify love to all (the love congress)
+         
+- You need to catch all wanted rules
+- Then resolve them down to the 8 major ones
+- Then solve the equation from the 8s qualities
+- And testify love to all
+
+- The secret of love (listen up everybody)
+- is how much long(it was so long)
+- can I wait wait without you(without you ...)
+- and testify love to all(and testify to all ...)
+
+- The ultimate voice
+- Catch up pitch and word to sound
+
+wav = mid + text2speech
+wav = mid + instruments
+png = svg + colors
+png = svg + js
+mp3 -> wav
+mpg -> png + wav
+
+
+story 
+ actors g(E -> S)
+ events g(E @ T)
+  event e([v#0 -> v#1] @ PT)
+   place PS3
+    time PT
+ location
+  locations gPS3
+  times gPT
+
+- la sequence des points zéros (théorie de la pénétration galactique):
+  - papa + maman = enfant
+  - famille
+  - ethnie
+  - quartier
+  - ville
+  - pays
+  - continent
+  - planète
+  - étoile
+  - galaxie
+  - amas galactique
+  - filament galactique
+  - pénétration galactique (0 + 1)
+  
+- il y a donc 2 créateurs pour l'évènement du big bang
+  - la mère inertie 0 yin
+  - le père mouvement 1 yang
+  
+- de la naquit l'enfant univers infini tao
+  qui se conformera selon l'enseignement du sage ultime 
+  krishna-moise-confucius-bouddha-socrate-jesus-mahomet-nanak-gandhi
+
+- le sage de l'univers est un être 
+  à n'importe quel niveau de la hiérarchie
+  qui comprend bien l'harmonie de son milieu
+  
+- ultime est la quantité maximum 
+  jamais enregistrée dans une mesure
+  selon le type de la source de la mesure
+  
+- role(mère,père,enfant) + état(inertie,mouvement,univers) + nombre(0,1,A) + énergie(yin,yang,tao) 
++ dieu(brahma,vishnu,krishna) + dieu(père,fils,st-esprit) + changement(création+maintenance+destruction)
++ actions[0(add,keep,remove) Q(more,same,less) D(to,at,from) P(in,on,out) R(and,or,not) I(do,be,have) V(multiply,ratio,divide) A(exponant,all,logaritm)]
+
+- l'objectif du parser ETS est de résoudre toutes les variables de type String en une valeur LETS  
+- si une valeur string est non-identifiée, il faut soit tenter d'identifier des sous-parties ou demander à l'utilisateur(=lancer une erreur)
+- donc quand il reste des inconnues après l'identification de sous-parties, l'expression arrête et retourne un objet d'erreur
+- à partir du journal de l'erreur, on peut corriger l'erreur et continuer l'expression ou elle était rendue
+- d'erreur en erreur on finit par éxécuter l'expression au complet et avoir sa vraie valeur
+- on peut alors recommencer l'éxécution de l'expression en temps réel ou avec un journal d'évènements
+
+
+- la toune à 4 accords (world beat progressif de 15 minutes)
+- ré - fa - do - sol
+- se libérer de tout
+- partout c'est l'amour
+
+
+*** here is the start of everything (TheMachine) ***
+ E    S      T
+ e    p      a
+A C E T S ^     \   concept: 0 -> (CETS) -> A
+V p m s i *  %  /   display: (gi+s)->m#ge#(DE->PTS3)
+I t w x u => :  #   language: a#"parse"(t)->v a#"stringify"(v)->t
+R g       &  |  ~   collection: g#[n*(e#"type")]
+P e       |> |= |<  structure: (P@D#0 - P#0)#"id"#"names"#"properties"#"actions"#"views"
+D a       -> @  <-  behavior: (D > 0) @ v -> p#"goal"#(CETS)
+Q n       >  =  <   something: (Q > 0) @ v = e
+0 v     b +     -   empty: 0 @ v
+
+"id"=In
+"names"=gIt
+"properties"=g#(It=v)
+"actions"=ga
+"views"=gp
+"goal"=gp@PTS3
+"parse"=a(t)->v
+"stringify"=a(v)->t
+"type"=ge#v
+"class"=ge#v
+"uri"=It->v
+"version"=It@e#(p#"type"="program",p#"version"="this"#"value")
+
+
+- transformer un texte en structure de données:
+  - étape syntaxique: séparer le texte selon les parenthèses, les guillements, les virgules et les points.
+  - étape linguistique: trouver les mots dans le dictionnaire de la langue
+  - étape opérative: identifier les actions et les verbes pour construire la structure compilée
+  - étape éxécutive:  éxécuter les actions avec leurs paramètres
+  - étape réductrice: réduire les élements restants selon la direction du contexte
+  - étape d'affichage: rendre les visuels, auditifs, animations et textes résultant de la réduction finale
+  - étape journalistique: inscrire la valeur réduite ainsi que le texte envoyé dans le journal
+  
+- transformer une structure de données en texte:
+  - identifier les composants à afficher (total, niveaux, étendues)
+  - distribuer selon les paramètres optimaux
+  - afficher chaque élément selon le contexte (langue, domaine, objet)
+  
+- faire un code javascript universel qui supporte:
+  - HTML5 client (n'importe quel navigateur web récent)
+  - JSP server with Rhino  (objets java supportés)
+  - ASP server with IronJS (objets dotnet supportés)
+  - PHP server with php-v8 (objets php supportés)
+  - V8  server with NodeJS (objets v8 et extensions node.js supportés)
+  - entre les runtimes, seulement du JSON sera échangé
+  - mais chaque runtime peut loader les mêmes fichiers de fonctions javascript
+
+- Il y a 4 formats pour écrire ETS:
+  - le format JSON strict (écrit par un programmeur)
+  - le format ETS ascii (écrit par un programmeur)
+  - le format ETS binaire (écrit par le compilateur ETS)
+  - le format d'une langue naturelle (écrit par n'importe quel être humain)
+  + ajouter à cela les 2 autres formats d'expresssion:
+    - SQL et tous les types stockables avec SQL
+    - HTML ainsi que tous les formats des éléments contenables dans le HTML
+        mimetype   is  os   ms   of   of   (is=industry standard, os=open standard, ms=microsoft, of=other format)
+      - image:     JPG PNG  BMP  GIF  SVG
+      - audio:     MP3 WAV  MWA  MID  SF2 VOC
+      - video:     SWF MP4  MWV  FLV  AVI ...
+      - model:     3DS X3D  DX   OBJ  DAE RAW ...
+      - data:      XML JSON XLS  CSV  SQL
+      - document:  PDF HTML DOC  XLS  PPS ...
+      - directory: ZIP TGZ  LDAP FILE FTP ...
+      
+- ETS est basé sur SI, MIME, URI, HTML, JSON and SQL
+  - cd = QE/S2   = p = V = light -> color -> image(image) -> shape(model)
+  - s  = QT      = t = I = time -> moment -> sequence(audio) -> duration
+  - m  = QS      = g = R = space -> location -> orientation -> size
+  - K  = PET/S   = e = P = heat -> kelvins -> streams -> clouds -> plasma -> rock
+  - A  = QE/T    = a = D = electricity -> charge -> current(audio) -> magnetism
+  - kg = QET2/S2 = n = Q = gravity -> mass -> movement(movie) -> system
+  
+- les 6 paramètres de l'atmosphère sont:
+  - K    = ET/S   = température en kelvins
+  - N/m2 = E/S3   = pression en newtons par métre carré
+  - m3   = S3     = volume en mètres cubes
+  - kg   = ET2/S2 = masse en kilogrammes
+  - m/s  = S/T    = vitesse en mètres par seconde
+  - ?    = ?      = capacité thermique
+
+- database parsing strategy
+  - supports jdbc adonet phpdbi nodedbi (MondoIn supports only jdbc)
+  - put all your date from all your sources into one single SQL database
+  - be sure to put foreign keys between related tables (MondoIn mandates that you do this step manually with Pentaho Metamodel Editor)
+  - load all tables, fields(name,type,size), indexes, foreign keys
+  - identify date and time fields and construct schema around them
+    - order tables with date and time fields by number of foreign keys end point (might not be there with MondoIn)
+    - you might get a single table that is linked to all others
+      - you then separate the others by type of link to the central table
+      - you then have your hierarchy automatically builded
+    - if you have several tables with no clear center, there might be dominant versus peripheric tables
+  - load rows at random
+    - execute user input queries
+    - compute path from unknowns
+  - construct a dictio from initial data strings and user input and queries strings
+
+mimetype{
+ toString()
+ extensions[string]
+ instances[
+  element{
+   load()
+   save()
+  } => (0 -> A)
+ ]
+}
+
+e#"mimetype"#(a#"toString",g#"extensions",g#"instances"#[e#"element"#(a#"load",a#"save")=>(0->A)])
+  
+- les propriétés sur n'importe quel objet ETS
+  - properties: gp = gpt = g#(p#t)*(0->A)
+  - name: t = v#It
+  - type: g = g#v
+  - content: ge = g#e*(0->A)
+  - actions: ga = g#a*(0->A)
+  - id: n = v#In
+    
+- Ou se placent les 4 états de la matière dans ETS ?
+- Il y a 2 séquences: la classique et la scientifique
+  - classique: terre eau air feu
+  - scientifique: solide liquide gazeux plasmique
+- Les 4 états seraient en fonction de la température donc PET/S
+
+
+   the game of the chain  
+the secret is the game of the chain
+the chain is playing a game
+who holds the chain above great pain
+be the king of the chain
+this is the game of the chain
+chain chain chain
+
+
+- ETS statue sur la différence entre un dieu, un ange, un maître ascensionné et un guide spirituel 
+  (= dieu enseignant, = ange gardien, = maître enseignant, = prêtre thérapeutique)
+- La réponse est qu'il n'y a pas de différence fondamentale entre tous ces types d'entités et n'importe quelle autre entité humaine.
+- Il y a seulement une différence de perspective entre chaque individu de nous dans notre quête du néant vers l'infini.
+- ETS statue que la différence entre 2 entités est la somme des différences entre chacune des propriétés des 2 entités [a la Pytagore(a la 2)]
+
+   
+
+A  
+0 -> v -> 0
+0 -> v -> A -> v -> 0
+E -> T -> S -> T -> E
+1 -> 2 -> 3 -> 4 -> 3 -> 2 -> 1
+1 -> 2 -> 3 -> 4 -> 5 -> 4 -> 3 -> 2 -> 1
+Q -> D -> P -> R -> I -> V -> I -> R -> P -> D -> Q
+
+
+P = P + Q * D
+P - P = Q + D
+Q + Q = Q
+Q - Q = Q
+Q + D -> Q * D
+D + Q -> D * Q
+D + D -> D
+D - D -> D
+
+
+
+
+QT@[e#"Regis"] = PT('now'='2013-04-20') - PT('birth'='1963-08-08')
+
+- ETS applications:
+  - ets-space: display forces and colors to 2D and 3D positions, movements and shapes => the view == immersion screen
+  - ets-time: run events at time positions => the controller == multimedia console
+  - ets-energy: state properties levels for each entities => the data == bootstrap config
+
+MVC = EST = SQL+HTML+JSON
+ETS = MCV = SQL+JSON+HTML
+
+- physical entities => E   T   S
+  - plasma   fire      X   -   -
+  - gaz      air       -   -   X
+  - liquid   water     -   X   -
+  - solid    earth     -   -   -
+
+  conscience  logaritm exponant infinity concept:    0 -> (CETS) -> A
+  perception  divide   multiply ratio    display:    (gi+s)->m#ge#(DE->PTS3)
+  text        have     do       be       language:   a#"parse"(t)->v a#"stringify"(v)->t
+  group       not      and      or       collection: g#[n*(e#"type")]
+  entity      in       out      on       structure:  (P@D#0 - P#0)#"id"#"names"#"properties"#"actions"#"views"
+  action      from     to       at       behavior:   (D > 0) @ v -> p#"goal"#(CETS)
+  number      less     more     same     something:  (Q > 0) @ v = e
+  value       remove   add      nothing  empty:      0
+
+infinity is not the same thing as all
+because all has a size which is not infinity
+the science versus religion problem
+is the gap between all and infinity
+
+l'infini n'est pas la même chose que le tout
+car le tout a une grandeur qui n'est pas infinie
+le problème de la science versus la religion
+est l'écart entre le tout et l'infini
+
+- types de registre de données:
+  - alphanumeric name variable (dictio)
+  - class properties selection (cube)
+  - 
+  
+  
+Le centre du mouvement
+La ou c'est toujours calme
+
+propriétés(mesures) de la chose
+- name(lang): identité entitaire         = It
+- type: relation entitaire               = Rg
+- substance: position énergétique        = PE3
+- moment: position temporelle            = PT
+- début: première position temporelle    = PT#0
+- fin: dernière position temporelle      = PT#100%
+- lieu: position spatiale                = PS3
+- mouvement: groupe d'actions            = DE->ST = ga
+- couleur: direction énergétique         = DE3n
+- image: niveaux énergétiques par espace = DE3/S2
+- vitesse: direction spatio-temporelle   = DS3/T
+- charge: quantité énergétique           = QE/T
+- lumière: quantité d'énergie            = QE/S2
+- solidité: gazeux -> liquide -> solide  = QE/S3 de résistance à la pression
+- viscosité: quantité d'énergie          = QE/S3 d'adérence
+- température: quantité énergétique      = QET/S
+- masse: quantité énergétique            = QET2/S2
+- durée: quantité temporelle             = QT
+- hauteur: quantité spatiale             = QS
+- volume: quantité spatiale              = QS3
+
+ E    S      T
+e*2  p*3    a*3
+A C E T S ^     \   concept: 0 -> (CETS) -> A
+V p m s i *  %  /   display: (gi+s)->m#ge#(DE->PTS3)
+I t w x u => :  #   language: a#"parse"(t)->v a#"stringify"(v)->t
+R g       &  |  ~   collection: g#[n*(e#"type")]
+P e       |> |= |<  structure: (P@D#0 - P#0)#"id"#"names"#"properties"#"actions"#"views"
+D a       -> @  <-  behavior: (D > 0) @ v -> p#"goal"#(CETS)
+Q n       >  =  <   something: (Q > 0) @ v = e
+0 v     b +     -   empty: 0 @ v
+
+A     E          T           S
+R personne    période     région
+P substance   moment      lieu
+D changement  séquence    orientation
+Q effort      durée       distance surface volume
+0 puissance   résistance  octets
+
+- ETS applications:
+  - ets-space: display forces and colors to 2D and 3D positions, movements and shapes => the view == immersion screen
+  - ets-time: run events at time positions => the controller == multimedia console
+  - ets-energy: state properties levels for each entities => the data == bootstrap config
+
+- sources of application concepts
+  - database content of tables, fields, datatypes and forms
+  - filesystem content of directories, files, mimetypes and editors (write=>text=>read, draw=>image=>display, record=>sound=>play)
+  - network content of servers, files and queries
+  - agenda content of events, dates, times, people, places and activities
+  - word dictionary based on previous database, filesystem, network, agenda objects
+  - other words based on known words definitions
+
+"id"=In
+"name"=It
+"names"=gIt
+"properties"=g#(It=v)
+"actions"=ga
+"views"=gp
+"goal"=gp@PTS3
+"parse"=a(t)->v
+"stringify"=a(v)->t
+"type"=ge#v
+"class"=ge#v
+"uri"=It->v
+"version"=It@e#(p#"type"="program",p#"version"="this"#"value")
+
+- L'expérience ultime pour prouver tout cela:
+  - 2 personnes qui peuvent se rencontrer en voyage astral
+  - un groupe de 30 sujets qui dorment et rêvent en laboratoire pendant 30 jours
+  - évaluation de l'influence des voyageurs de l'astral sur les rêves des sujets
+  - faire un second groupe témoin sans voyageur de l'astral
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+

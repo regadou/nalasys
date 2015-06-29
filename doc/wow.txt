@@ -1,0 +1,71 @@
+
+
+  Menus a faire pour Web Open Work
+
+- Fichier
+  - Nouveau
+    - Traitement de texte (*)
+    - Feuille de calcul (*)
+    - Base de données (*)
+    - Dessin vectoriel (*)
+    - Dessin bitmap
+    - Présentation
+  - Ouvrir
+  - Fermer
+  - Enregistrer
+  - Enregistrer sous
+  - Insérer
+  - Format d'impression
+  - Imprimer
+- Edition
+  - Annuler
+  - Couper
+  - Copier
+  - Coller
+  - Effacer
+  - Nouvelle fiche
+  - Dupliquer la fiche
+  - Supprimer la fiche
+  - Tout sélectionner
+  - Recherche/remplacer
+- Format
+  - Document (marges)
+  - Police
+  - Corps (font size)
+  - Style (gras italique ...)
+  - Couleur
+  - Insérer une entête
+  - Insérer un pied de page
+- Modèle (*)
+  - Utilisation
+  - Recherche
+  - Modèle
+  - Tableau
+  - Définir les champs
+  - Insérer un champ
+  - Insérer un élément
+  - Afficher sous forme de liste
+  - Nouveau modèle
+  - Nouveau modèle d'étiquettes
+  - Modifier les modèles
+  - (liste des tables ...)
+- Objet
+  - Rapprocher
+  - Premier plan
+  - Éloigner
+  - Arrière plan
+  - Aligner les objets
+  - Rotation
+  - Miroir (horizontal vertical)
+  - Associer
+  - Dissocier
+  - Verrouiller
+  - Déverrouiller
+- Aide
+  - Rechercher
+  - Aide WOW
+  - A propos
+
+
+
+

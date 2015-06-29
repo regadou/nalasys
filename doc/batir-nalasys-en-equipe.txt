@@ -1,0 +1,207 @@
+
+         Bâtir Nalasys en équipe
+
+- a partir d'une théorie de la conscinece
+- faire l'API des interfaces (commnune a tous les développeurs et les applications)
+- développer une interface web de diagramme de classes (par applicaton par développeur)
+- on compile le projet en jar (executer avec: java -jar)
+- on deploie le projet en war (dans un servlet container)
+- on configure le projet pour un jdbc et un local folder 
+  (conf/Catalina/localhost/<name>.xml ou paramètre en ligne de commande)
+
+
+
+
+
+
+
+- il faut se baser sur le schema des 64 concepts
+- avoir les interfaces communes pour Context et Data
+- utiliser la classe Converter comme un système de plugin:
+  - les 64 classes sont des plugins
+  - la configuration des 64 classes est lue dans un fichier au boot time
+  
+- a travers les convertisseurs, on peut établir l'initialisation des 64 classes-concepts et les règles de leurs interopérations
+- officialiser les protocoles uri des codes de language (souvent équivalent à l'extension du fichier mimetype)
+  - le trio MVC: sql html json
+  - langages natifs: js java php cs c ...
+  - langages naturels: fr en es ...
+  - autres langages: uri xml csv pdf doc xls ppt swf jpg png mp3 mp4 mpg
+  - langage personnalisé par utilisateur, par compagnie, en combinaison ou en couches
+  - chaque language/interpréteur est un plugin attaché par un fichier de configuration
+  - les langages sont tous facultatifs dans une implémentation sauf sql, html, json, uri et le langage natif du contexte courant
+  
+- il y a 3 niveaux de notation de codes dans les uris:
+  - uri protocol(lang): http, ftp, javascript, java, sql, fr, en, ...
+  - uri mimetype(type/subtype): application/javascript, text/java, application/sql, text/fr, text/en, text/html, image/jpeg, audio/mp3, ...
+  - file extension: .js .java .sql .fr .en .html .jpg .mp3 ...
+  
+- ces codes sont extraits des listes de uris que Nalasys reçoit
+- selon les règles du contexte, les codes(le uri, son contenu et les parties du contenu) deviennent des instances des 64 classes concepts
+
+- les étapes de conceptualisation
+  #1: 0 < v < A
+  #2: E T S -> E/T:cog E/S:emo ET/S:phy
+  #3: QDPRIV -> naegtp
+  #4: 0 -> +  0  - 
+      Q -> >  =  <
+      D -> -> @  <-
+      P -> @> @= @< 
+      R -> &  |  ~ 
+      I -> => :  # 
+      V -> *  %  / 
+      A -> ^  A  \  
+  
+- le système opère avec 64 classes dont 24 opérateurs et 40 entités
+- le système évalue selon les 3 super-dimensions: 0QDPRIVA AETSC +0-
+- le système se raccorde ensuite selon les jointures 0 ou A: (0)QDPRIV(A) (A)ETSC +(0)-
+- le système reconnait 41 symboles de base dans le langage AETS:
+      A E T S C ^     \
+      V       p *  %  /
+      I       t => :  #
+      R       g &  |  ~
+      P       e @> @= @<
+      D       a -> @  <-
+      Q       n >  =  <
+      0       v +     -
+- d'autres codes peuvent être décodés selon des définitions plus complexes:
+  m = V*E*ST
+  s = V*E*T
+  i = V*E*S2
+  w = I*E->S
+  x = I*T->S
+  u = I*S->S
+  b = (I*S<-0*C)->t
+- les 41 symboles de base viennent de: 5 colonnes(AC+0-) de 8 niveaux(0QDPRIVA) moins les 2 opérateurs vides(0A) ajouté des 3 dimensions(ETS)
+- mais le véritable arbre de la conscience est:
+
+     AETSC
+     V
+     I
+     R
+     P
+     D
+     Q
+    -0+
+    
+- un exemple possible des 64 classes distribuées selon le tableau 8*(5+3): (39 seulement sont présentées dont 11 n'existent pas encore)
+    jb=java.beans jl=java.lang jn=java.net ju=java.util on=org.nalasys
+        
+    on.Data.ALL   on.Data.ENERGY on.Data.TIME  on.Date.SPACE  on.Concept     on.Opertor.EXPONANT                     on.Operator.LOG
+    on.View                                                   on.Perception  on.Operator.MULTIPLY on.Operator.MODULO on.Operator.DIVIDE
+    on.Identity   ju.Map.Entry   jb.Expression jn.URI         jl.String      on.Operator.EXEC     on.Operator.ASSIGN on.Operator.HAVE
+    on.Relation                                               ju.Collection  on.Operator.AND      on.Operator.OR     on.Operator.NOT
+    on.Position                  ju.Date                      ju.Map      
+    on.Direction                                              on.Action     
+    on.Quantity                                               jl.Number      on.Operator.MORE     on.Operator.EQUAL  on.Opertor.LESS
+    on.Data.NONE                                              jl.Object      on.Operator.ADD                         on.Operator.SUBSTRACT
+    
+    
+     
+- comment transformer class Data en class DataImpl implements Data:
+  - move all static methods logic into instance operator method
+  - convert Data constructor logic into Data converter logic
+  - 
+  
+- the levels of logic actions on objects in CRUD format
+  - create new     add    put     +
+  - read   is      get    get     ==
+  - update do      set    put     :=
+  - delete destroy remove remove  -
+  
+  
+v0CA    java.lang.Object         + Concept
+nETS    java.lang.Number         + Unit
+a+=-    java.lang.reflect.Method + Operator = org.nalasys.Action
+e       java.util.Map
+g       java.util.Collection
+twxud   java.lang.String         + Data     = java.util.Map.Entry
+pismz   org.nalasys.Matrix
+  
+  
+- JSON should not mimic XPath like jsonpath tries to do
+- We should query the path of an object with JSON
+- uri: /x/y/0/allo
+- json: {"x":{"y":[{"allo":{}}]}} + HTTP action(PUT|GET|POST|DELETE) -> CRUD app
+
+
+- methods needed on Data interface
+   public String toString();                       //v->t
+   public String toString(String lang);            //v->t("lang")
+   
+   public boolean equals(Object v);                //e==v
+   public int compareTo(Object v);                 //(<0)?(e<v):((==0)?(e==v):(e>v))
+   
+   public Collection getContent();                 //g
+   public Class getContentType();                  //C@g
+   public void setContentType(Class C);            //C@g:=C
+
+   public boolean contains(Object v);              //g#v
+   public boolean add(Object v);                   //g+v
+   public Object remove(Object v);                 //g-v
+   
+   public Class getType();                         //C
+   public int getTypeId();                         //n@C
+   public Object getValue();                       //v
+   public <T> getValue(Class<T> C);                //v->C
+   public void setValue(Object v);                 //e:=v
+   
+   public Collection getProperties();              //p@g
+   public Object getProperty(Object p);            //p@e
+   public void setProperty(Object p, Object v);    //p@e:=v
+   
+   
+
+- So Nalasys interfaces will consist of Data implementations with ScriptContext, InputStream and OutputStream references
+- The default Nalasys language (nls) will be an implementation of ScriptEngine
+
+
+- We also need base interfaces from the java API (compared with javascript namespace) -> mimetypes :
+   nls            java          + java types      (javascript)                     -> mimetype           
+  - C: java.lang.Class          + typeables       (typeof instanceof constructor)
+  - p: org.nalasys.Perception   + matrixables                                      -> image/* audio/* video/* model/*
+  - t: java.lang.CharSequence   + stringables     (string)                         -> text/* message/*
+  - g: java.util.Collection     + iterables       (object instanceof Array)        -> multipart/*
+  - e: java.util.Map            + beans           (object)
+  - a: java.lang.reflect.Method + callables       (function)
+  - n: java.lang.Number         + numerables      (number)
+  - v: java.lang.Object                                                            -> application/*
+  
+- The basic standards are:
+  - SI     units for ETS        + pismz
+  - MIME   levels for vnaegtpC  + pismz
+  - URI    references for twxud + pismz
+  
+rank  level     location need       data       color   vibration   growth java
+  7   all       top      harmony    concept    violet     960       *10   org.nalasys.Data.ALL
+  6   view      eyes     knowledge  perception blue        96        *6   org.nalasys.Perception
+  5   identity  throat   expression text       cyan        16        +4   java.lang.String         java.lang.CharSequence   + stringables
+  4   relation  heart    sharing    group      green       12        +2   java.util.Collection     java.lang.Object[]
+  3   position  plexus   security   entity     yellow      10        +4   java.util.Map            java.lang.Object
+  2   direction navel    activity   action     orange       6        +2   org.nalasys.Action       java.lang.reflect.Method + java.lang.reflect.Constructor
+  1   quantity  pelvis   survival   number     red          4        +4   java.lang.Number         java.lang.Boolean
+  0   nothing   ground   inertia    nothing    black        0        +0   org.nalasys.Data.NONE    java.lang.Void           + null
+ 
+ 
+public interface Perception {
+   public static interface Dimension {
+      public String getName();          // default: (index from Matrix.getDimensions() array)
+      public Measure getMeasure();      // default: null
+      public int getLength();           // default: 0
+      public double getMinimumValue();  // default: Double.NEGATIVE_INFINITY
+      public double getMaximumValue();  // default: Double.POSITIVE_INFINITY
+      public boolean isInteger();       // default: false
+   }
+   public Dimension[] getDimensions();
+   public Number getValue(int index);
+   public Number getValue(int[] index);
+   public Number[] getValues();
+   public Number[] getValues(int start, int end);
+   public Number[] getValues(int[] start, int[] end);
+   public void setValue(int index, Number value);
+   public void setValue(int[] index, Number value);
+   public void setValues(int start, int end, Number[] values);
+   public void setValues(int[] start, int[] end, Number[] values);
+}
+
+  

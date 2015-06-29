@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: Regis Dehoux
+Main-Class: org.regadou.nalasys.Main
+
